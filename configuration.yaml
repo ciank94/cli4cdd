@@ -1,2 +1,22 @@
-parameters:
-  data_id: 'cmems_mod_glo_phy_my_0.083deg_P1D-m'
+domain: 'SG_subset2' # options: ['SG_subset', 'SO_subset']
+data_id: 'cmems_mod_glo_phy_my_0.083deg_P1D-m'
+datetime_start: '2016-06-01'
+datetime_end: '2016-06-02'
+variables: ["uo", "vo", "thetao", "zos"]
+min_depth: 0
+max_depth: 1
+SG_subset:
+  min_lon: -41
+  max_lon: -32
+  min_lat: -56
+  max_lat: -51
+SG_subset2: # a wider range for SG subset
+  min_lon: -42
+  max_lon: -30
+  min_lat: -58
+  max_lat: -50
+SO_subset:
+  min_lon: -70
+  max_lon: -31
+  min_lat: -73
+  max_lat: -50
