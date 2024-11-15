@@ -1,4 +1,10 @@
 import cdsapi
+import subprocess
+
+# Define the PowerShell command to unzip and rename
+unzip_command = """Expand-Archive -Path *.zip -Destination './'"""
+#rename_command = """Rename-Item -Path './*.zip' -NewName 'SLA_2017.nc'"""
+remove_zip = """rm ./*.zip"""
 
 dataset = "satellite-sea-level-global"
 request = {
@@ -10,9 +16,12 @@ request = {
     "data_format": "netcdf",
     "download_format": "unarchived"
     }
-target = 'SLA_2017.nc'
 client = cdsapi.Client()
-client.retrieve(dataset, request, target).download()
+client.retrieve(dataset, request).download()
+# Run the command in a PowerShell subprocess
+subprocess.run(["powershell", "-Command", unzip_command], shell=True)
+#subprocess.run(["powershell", "-Command", rename_command], shell=True)
+subprocess.run(["powershell", "-Command", remove_zip], shell=True)
 
 # dataset = "reanalysis-era5-single-levels"
 # request = {
